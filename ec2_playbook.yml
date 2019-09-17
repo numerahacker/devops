@@ -37,6 +37,15 @@
       instance_ids: "{{ ec2d.instances[0].id}}"
     tags:
      - start
+  - name: Restarting instances that were previously launched
+    vars:
+      ec2d: "{{ lookup('file', '~/out') }}"
+    ec2:
+      state: restarted
+      region: ap-south-1
+      instance_ids: "{{ ec2d.instances[0].id}}"
+    tags:
+     - restart
   - name: Terminating instances that were previously launched
     vars:
       ec2d: "{{ lookup('file', '~/out') }}"
